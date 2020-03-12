@@ -15,8 +15,9 @@ public class Main {
 
         myConsole.revert();
 
-
-
+        try {
+            Thread.sleep(2_000);
+        } catch(Exception e){}
 
     }
 }
