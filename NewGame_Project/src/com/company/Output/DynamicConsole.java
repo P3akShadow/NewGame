@@ -38,12 +38,31 @@ public class DynamicConsole {
      */
     public void println(String output){
         assert (historyPointer == history.size());
-        assert (historyPointer == history.size());
         output += "\n";
-        System.out.print(output);
-        output += " ";         //this is necessary to get the correct number of lines (lines is implemented with .split)
-        history.add(output);
-        historyPointer++;
+        print(output);
+    }
+
+    /**
+     * Replaces a String in history and leaves the rest as it is
+     * @param printsBefore
+     */
+    public void replace(int printsBefore, String replacingString){
+        int linesToClear = 0;
+
+        for(int i = printsBefore; i >= 0; i--){
+            linesToClear += lines(getHistoryFromLast(i));
+        }
+
+        clearLines(linesToClear);
+
+        StringBuilder sb = new StringBuilder(replacingString + "\n");
+
+        for(int i = printsBefore - 1; i >= 0; i--){
+            sb.append(getHistoryFromLast(i));
+        }
+
+        System.out.print(sb);
+
     }
 
     /**
@@ -72,7 +91,16 @@ public class DynamicConsole {
      * @return number of lines
      */
     private int lines(String str){
-        return str.split("\n").length;
+        char newLine = (char) 10;
+        int lines = 1;                   //if a stirng has no \n, there is still a line
+
+        for(char c : str.toCharArray()){
+            if(c == newLine){
+                lines ++;
+            }
+        }
+
+        return lines;
     }
 
     /**
@@ -94,5 +122,22 @@ public class DynamicConsole {
      */
     public void clearLine(){
         System.out.print("\r\033[K");
+    }
+
+    /**
+     * This calls history.get(history.size() - 1 - before);
+     * @param before
+     * @return
+     */
+    private String getHistoryFromLast(int before){
+        return history.get(history.size() - 1 - before);
+    }
+
+    /**
+     * This calls history.get(history.size() - 1 - before);
+     * @return
+     */
+    private String getLastHistory(){
+        return history.get(history.size() - 1);
     }
 }
