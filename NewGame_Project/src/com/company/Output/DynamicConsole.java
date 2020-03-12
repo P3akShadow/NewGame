@@ -77,6 +77,7 @@ public class DynamicConsole {
 
     /**
      * Clears multiple above the cursor.
+     * "\033[1A" jumps one line up
      * @param lines lines to clear
      */
     void clearLines(int lines){
@@ -88,6 +89,8 @@ public class DynamicConsole {
 
     /**
      * Clears the line the cursor is currently in
+     * "\r" jumps to the beginning of the line
+     * "\033[K" clears everything right of the line
      */
     public void clearLine(){
         System.out.print("\r\033[K");
