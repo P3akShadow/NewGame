@@ -41,12 +41,12 @@ public class Vector {
         Vector direction = new Vector(0, 0);
 
         if(x > vector1.x && x > vector2.x){
-                direction.x = -1;
+            direction.x = -1;
         }else if(x < vector1.x && x < vector2.x){
             direction.x = 1;
         }
 
-        if(y >= vector1.y && y >= vector2.y){
+        if(y > vector1.y && y > vector2.y){
             direction.y = -1;
         }else if(y < vector1.y && y < vector2.y){
             direction.y = 1;

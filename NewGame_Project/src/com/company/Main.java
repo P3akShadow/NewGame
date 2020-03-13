@@ -1,29 +1,26 @@
 package com.company;
 
 import com.company.output.DynamicConsole;
+import com.company.snake.SnakeGame;
+import com.company.snake.Vector;
 
 public class Main {
 
     public static void main(String[] args) {
         DynamicConsole myConsole = new DynamicConsole();
-        myConsole.println("Hello Word");
-        myConsole.println("a\naa\naaa");
-        myConsole.println("b\nbb\nbbb");
-        myConsole.println("c\ncc\nccc");
 
-        try {
-            Thread.sleep(2_000);
-        } catch(Exception e){}
+        Vector v1 = new Vector(1, 1);
+        Vector v2 = new Vector(2, 2);
 
-        myConsole.replace(1, "d\ndd\nddd");
+        /*
+        SnakeGame sg = new SnakeGame(myConsole);
 
-        myConsole.nextDouble();
-
-        myConsole.revert(3);
-
-        try {
-            Thread.sleep(2_000);
-        } catch(Exception e){}
-
+        while (true) {
+            try {
+                Thread.sleep(1_000);
+            } catch (Exception e) {};
+            sg.nextFrame();
+        }
+         */
     }
 }
