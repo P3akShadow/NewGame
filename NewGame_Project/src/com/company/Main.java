@@ -1,6 +1,6 @@
 package com.company;
 
-import com.company.Output.DynamicConsole;
+import com.company.output.DynamicConsole;
 
 public class Main {
 
