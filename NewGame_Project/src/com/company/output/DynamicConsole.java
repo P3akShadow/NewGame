@@ -128,8 +128,12 @@ public class DynamicConsole {
         return d;
     }
 
+    public boolean hasNextLine(){
+        return cin.hasNextLine();
+    }
+
     /**
-     * Equivalent of scanner.nextLine(); saves the line in history, however
+     * Equivalent of scanner.nextLine(); saves the line in history, however saves the String.
      */
     public String nextLine(){
         String in = cin.nextLine();

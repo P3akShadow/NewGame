@@ -33,11 +33,11 @@ public class SnakeGame {
 
     public boolean nextFrame(){
 
-        snake.move(new Vector(0, 0));
+        int status = snake.move(new Vector(0, 0));
         String currentGameState = getCurrentGamestate();
         dynamicConsole.revert();
         dynamicConsole.println(currentGameState);
-        return true;
+        return status != -1;
     }
 
     /**

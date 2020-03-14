@@ -27,6 +27,8 @@ public class Snake {
         return body.get(0);
     }
 
+    private void setHead(Vector head){body.set(0, head);};
+
     /**
      * Moves the snake by one square.
      * @param newDirection The direction to move (0,0) to keep the dir
@@ -50,15 +52,15 @@ public class Snake {
 
         //handles out of bounds
         if(dirToRectangle.getX() != 0){
-            int newX = dirToRectangle.getX() == 1 ? 0 : game.getBound().getX();
+            int newX = dirToRectangle.getX() == 1 ? game.getBound().getX() : 0;
 
             Vector head = getHead();
-            head = new Vector(newX, head.getY());
+            setHead(new Vector(newX, head.getY()));
         } else if(dirToRectangle.getY() != 0){
-            int newY = dirToRectangle.getY() == 1 ? 0 : game.getBound().getY();
+            int newY = dirToRectangle.getY() == 1 ? game.getBound().getY() : 0;
 
             Vector head = getHead();
-            head = new Vector(head.getX(), newY);
+            setHead(new Vector(head.getX(), newY));
         }
 
 
@@ -66,6 +68,7 @@ public class Snake {
         //checks if the snake hit its head
         for(int i = 1; i < body.size(); i++){
             if(getHead().equals(body.get(i))){
+                System.out.println("game over");
                 return -1;
             }
         }
