@@ -42,7 +42,7 @@ public class SnakeGame {
 
         Vector direction = new Vector(0, 0);
 
-        String consoleInput = dynamicConsole.nextStringIfPossible();
+        String consoleInput = dynamicConsole.nextStringNonBlocking();
 
         if(consoleInput.length() != 0){
             switch (consoleInput.charAt(0)){

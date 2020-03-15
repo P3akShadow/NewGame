@@ -3,18 +3,20 @@ package com.company.output;
 import java.io.*;
 import java.util.Scanner;
 import java.util.Stack;
+import java.util.concurrent.Callable;
 
 /**
  * This class allows to write on the console and gives the user the ability to revert the changes.
  * Also, the user should not use System.out.print(ln)() outside of this class.
  * It's best to just create one instance of this console (Maybe the methods should be static)
  */
-public class DynamicConsole {
+public class DynamicConsole<ret> {
 
     /**
      * History saves everything that has been written on the console
      */
     private Stack<String> history;
+    private String ret = "";
 
     /**
      * Scanner to handle input
@@ -24,7 +26,8 @@ public class DynamicConsole {
 
     public DynamicConsole(){
         history = new Stack<>();
-        cin = new Scanner(System.in);
+        InputStream in = System.in;
+        cin = new Scanner(in);
     }
 
     /**
@@ -99,17 +102,13 @@ public class DynamicConsole {
     }
 
     /**
-     * Returns the next String form the console and driectly deletes it.
+     * Returns the next String form the console and directly deletes it.
      */
-    public String nextStringIfPossible(){
-        if(cin.hasNextLine()){
-            String ret = cin.nextLine();
-            clearLine();
-            return ret;
-        }
+    public String nextStringNonBlocking(){
+        Callable<String> nextString = () -> cin.nextLine();
 
-        return "";
 
+        return ret;
     }
 
     /**
