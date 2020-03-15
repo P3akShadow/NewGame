@@ -2,9 +2,16 @@ package com.company.snake;
 
 import com.company.output.DynamicConsole;
 
+import java.util.Random;
+
 public class SnakeGame {
     public static final char GAME_CHAR = '~';
     public static final char FOOD_CHAR = 'O';
+
+    public static final char UP = 'w';
+    public static final char RIGHT = 'd';
+    public static final char DOWN = 's';
+    public static final char LEFT = 'a';
 
     private DynamicConsole dynamicConsole;
     private Snake snake;
@@ -33,8 +40,38 @@ public class SnakeGame {
 
     public boolean nextFrame(){
 
-        int status = snake.move(new Vector(0, 0));
+        Vector direction = new Vector(0, 0);
+
+        String consoleInput = dynamicConsole.nextStringIfPossible();
+
+        if(consoleInput.length() != 0){
+            switch (consoleInput.charAt(0)){
+                case UP : direction = new Vector(-1, 0);
+                break;
+                case RIGHT : direction = new Vector(0, 1);
+                break;
+                case DOWN : direction = new Vector(1, 0);
+                break;
+                case LEFT : direction = new Vector(0, -1);
+                break;
+            }
+        }
+
+        int status = snake.move(direction);
+
+
+
+        if(status == 1){
+            Random rand = new Random();
+            while(snake.occupied(food)){
+                food = new Vector(rand.nextInt(bound.getX() + 1), rand.nextInt(bound.getY() + 1));
+                System.out.println(food.getX());
+                System.out.println(food.getY());
+            }
+        }
+
         String currentGameState = getCurrentGamestate();
+
         dynamicConsole.revert();
         dynamicConsole.println(currentGameState);
         return status != -1;

@@ -82,6 +82,11 @@ public class Snake {
         return 0;
     }
 
+    public boolean occupied(Vector position){
+        char fieldStatus = snakeAt(position);
+        return fieldStatus == BODY_CHAR || fieldStatus == HEAD_CHAR;
+    }
+
     public char snakeAt(Vector pos){
         if(pos.equals(getHead())){
             return HEAD_CHAR;

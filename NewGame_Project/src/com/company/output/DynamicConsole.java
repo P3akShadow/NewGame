@@ -1,5 +1,6 @@
 package com.company.output;
 
+import java.io.*;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -95,6 +96,20 @@ public class DynamicConsole {
         history.push(i + "\n");
 
         return i;
+    }
+
+    /**
+     * Returns the next String form the console and driectly deletes it.
+     */
+    public String nextStringIfPossible(){
+        if(cin.hasNextLine()){
+            String ret = cin.nextLine();
+            clearLine();
+            return ret;
+        }
+
+        return "";
+
     }
 
     /**
